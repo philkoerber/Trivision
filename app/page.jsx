@@ -45,13 +45,13 @@ const SpaceScene = () => {
 const Card = ({ cardid }) => {
   let pic = ''
   if (cardid === 1) {
-    pic = '/tarotdeck/lovers.png'
+    pic = 'tarotdeck/lovers.png'
   }
   if (cardid === 2) {
-    pic = '/tarotdeck/magician.png'
+    pic = 'tarotdeck/magician.png'
   }
   if (cardid === 3) {
-    pic = '/tarotdeck/popess.png'
+    pic = 'tarotdeck/popess.png'
   }
 
   const texture = useTexture(pic)
