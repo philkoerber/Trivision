@@ -43,20 +43,22 @@ const SpaceScene = () => {
 }
 
 const Card = ({ cardid }) => {
-  let texture = null
+  let pic = ''
   if (cardid === 1) {
-    texture = useTexture('/tarotdeck/lovers.png')
+    pic = '/tarotdeck/lovers.png'
   }
   if (cardid === 2) {
-    texture = useTexture('/tarotdeck/magician.png')
+    pic = '/tarotdeck/magician.png'
   }
   if (cardid === 3) {
-    texture = useTexture('/tarotdeck/popess.png')
+    pic = '/tarotdeck/popess.png'
   }
+
+  const texture = useTexture(pic)
 
   return (
     <mesh position={[0, 0, -0.4]}>
-      <boxGeometry args={[1.2, 2, 0.008]} />
+      <planeGeometry args={[1.2, 2]} />
       <meshStandardMaterial map={texture} />
     </mesh>
   )
