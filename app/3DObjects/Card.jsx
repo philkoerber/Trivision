@@ -1,5 +1,6 @@
 import { useSpring, animated, config } from '@react-spring/three'
 import { useTexture } from '@react-three/drei'
+import { generateCardLink, tarotDeck } from './tarotDeckArray'
 
 const Card = ({ cardid, active }) => {
   const springs = useSpring({ rotation: active ? 0 : Math.PI })
@@ -10,17 +11,16 @@ const Card = ({ cardid, active }) => {
 
   let pic = ''
   if (cardid === 1) {
-    pic = 'tarotdeck/05-TheHierophant.png'
+    pic = generateCardLink(tarotDeck[2])
   }
   if (cardid === 2) {
-    pic = 'tarotdeck/10-WheelOfFortune.png'
+    pic = generateCardLink(tarotDeck[28])
   }
   if (cardid === 3) {
-    pic = 'tarotdeck/17-TheStar.png'
+    pic = generateCardLink(tarotDeck[9])
   }
 
   const frontTexture = useTexture(pic)
-  const backTexture = useTexture('tarotdeck/backside.jpg')
 
   return (
     <animated.mesh rotation-y={rotation} position={[0, 0, 0]}>
@@ -29,7 +29,9 @@ const Card = ({ cardid, active }) => {
       <meshBasicMaterial attach='material-1' color={'black'} />
       <meshBasicMaterial attach='material-2' color={'black'} />
       <meshBasicMaterial attach='material-3' color={'black'} />
-      <meshBasicMaterial attach='material-5' map={backTexture} />
+      {/* backside */}
+      <meshStandardMaterial attach='material-5' color={'#ffd700'} metalness={1} roughness={0.2} />
+      {/* frontside */}
       <meshBasicMaterial attach='material-4' map={frontTexture} />
     </animated.mesh>
   )

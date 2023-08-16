@@ -35,7 +35,7 @@ export default function Scene() {
   return (
     <View orbit className='relative h-screen w-screen bg-black'>
       <ambientLight />
-      {/* <pointLight position={[0, 0, 20]} /> */}
+      <pointLight position={[0, 0, 20]} />
       <SpaceScene />
       <Altar altarNr={1} readingState={readingState} />
       <Altar altarNr={2} readingState={readingState} />

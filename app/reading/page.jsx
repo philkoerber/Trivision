@@ -2,6 +2,7 @@
 
 import React from 'react'
 import useStore from '../useStore'
+import { generateCardLink, tarotDeck } from '@/3DObjects/tarotDeckArray'
 
 function page(props) {
   const setReadingState = useStore((state) => state.setReadingState)
@@ -12,6 +13,7 @@ function page(props) {
         className='px-10 py-6 bg-neutral-800 bg-opacity-25 backdrop-blur-md text-white rounded-lg hover:bg-opacity-50 focus:outline-none transition duration-300'
         onClick={() => {
           setReadingState(0)
+          console.log(generateCardLink(tarotDeck[36]))
         }}
       >
         0
