@@ -7,7 +7,15 @@ function page(props) {
   const setReadingState = useStore((state) => state.setReadingState)
 
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex absolute w-screen bottom-0 justify-center items-center gap-8'>
+      <button
+        className='px-10 py-6 bg-neutral-800 bg-opacity-25 backdrop-blur-md text-white rounded-lg hover:bg-opacity-50 focus:outline-none transition duration-300'
+        onClick={() => {
+          setReadingState(0)
+        }}
+      >
+        0
+      </button>
       <button
         className='px-10 py-6 bg-neutral-800 bg-opacity-25 backdrop-blur-md text-white rounded-lg hover:bg-opacity-50 focus:outline-none transition duration-300'
         onClick={() => {

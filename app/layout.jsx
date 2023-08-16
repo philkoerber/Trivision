@@ -1,7 +1,6 @@
 import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 import Header from './Header'
-import Reading from './Reading'
 import Scene from './Scene'
 export const metadata = {
   title: 'Trivision',
@@ -22,15 +21,11 @@ export default function RootLayout({ children }) {
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <Header />
 
-        <div className='absolute z-10 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-          <Transition>{children}</Transition>
-        </div>
+        <div className='absolute z-10 w-screen h-screen'>{children}</div>
 
         <Layout>
           <Scene />
         </Layout>
-
-        <Reading />
       </body>
     </html>
   )
