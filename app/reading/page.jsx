@@ -1,9 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-
-import useStore from '@/useStore'
+import useStore from '../useStore'
 
 function page(props) {
   const setReadingState = useStore((state) => state.setReadingState)
