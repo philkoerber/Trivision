@@ -8,7 +8,6 @@ export const metadata = {
   description: 'Your three card spread waits for you...',
 }
 
-import { AnimatePresence } from 'framer-motion'
 import Transition from './Transition'
 
 export default function RootLayout({ children }) {
