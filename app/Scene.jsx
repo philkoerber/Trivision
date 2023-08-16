@@ -1,16 +1,17 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Suspense, useEffect } from 'react'
-import { Environment, MeshPortalMaterial, useTexture } from '@react-three/drei'
+import { useEffect, useState } from 'react'
+import { MeshPortalMaterial, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import useStore from './useStore'
+
+import { useSpring, animated, config } from '@react-spring/three'
 
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => <div className='flex w-screen h-screen flex-col items-center justify-center bg-black'></div>,
 })
-const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
 
 const AltarScene = () => {
   const map = useTexture('/texture.jpg')
@@ -22,15 +23,15 @@ const AltarScene = () => {
   )
 }
 
-const SpaceScene = () => {
-  const map = useTexture('/space.jpg')
-  return (
-    <mesh>
-      <sphereGeometry args={[50, 16, 16]} />
-      <meshStandardMaterial map={map} side={THREE.BackSide} />
-    </mesh>
-  )
-}
+// const SpaceScene = () => {
+//   const map = useTexture('/space.jpg')
+//   return (
+//     <mesh>
+//       <sphereGeometry args={[50, 16, 16]} />
+//       <meshStandardMaterial map={map} side={THREE.BackSide} />
+//     </mesh>
+//   )
+// }
 
 const Card = ({ cardid }) => {
   let pic = ''
@@ -54,7 +55,13 @@ const Card = ({ cardid }) => {
   )
 }
 
-const Altar = ({ altarNr, readingState }) => {
+const Altar = ({ altarNr, isRevealed }) => {
+  // const springs = useSpring({ scale: active ? 1.5 : 1 })
+  // const { rotation } = useSpring({
+  //   scale: active ? 1.5 : 1,
+  //   config: config.wobbly,
+  // })
+
   let position = null
   let rotate = null
   if (altarNr === 1) {
@@ -64,7 +71,7 @@ const Altar = ({ altarNr, readingState }) => {
 
   if (altarNr === 2) {
     position = [0, 0, 0]
-    rotate = readingState / 3
+    rotate = 0
   }
   if (altarNr === 3) {
     position = [3, 0, 0.5]
@@ -72,14 +79,14 @@ const Altar = ({ altarNr, readingState }) => {
   }
 
   return (
-    <mesh position={position} rotation-y={rotate}>
+    <animated.mesh position={position} rotation-y={rotate}>
       <planeGeometry args={[2, 3]} />
       <MeshPortalMaterial>
         <AltarScene />
         <ambientLight />
-        <Card cardid={altarNr} />
+        {/* <Card cardid={altarNr} /> */}
       </MeshPortalMaterial>
-    </mesh>
+    </animated.mesh>
   )
 }
 
@@ -91,14 +98,12 @@ export default function Scene() {
   }, [readingState])
 
   return (
-    <div className='relative'>
-      <View className='relative h-screen w-screen bg-black'>
-        <ambientLight />
-        {/* <SpaceScene /> */}
-        {/* <Altar altarNr={1} /> */}
-        <Altar altarNr={2} readingState={readingState} />
-        {/* <Altar altarNr={3} /> */}
-      </View>
-    </div>
+    <View className='relative h-screen w-screen bg-black'>
+      {/* <ambientLight />
+        <SpaceScene /> */}
+      <Altar altarNr={1} />
+      <Altar altarNr={2} />
+      <Altar altarNr={3} />
+    </View>
   )
 }
