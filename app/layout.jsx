@@ -1,5 +1,3 @@
-'use client'
-
 import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 import Header from './Header'
