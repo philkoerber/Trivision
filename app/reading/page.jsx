@@ -4,7 +4,7 @@ import React from 'react'
 import useStore from '../useStore'
 import { generateCardLink, tarotDeck } from '@/3DObjects/tarotDeckArray'
 
-function page(props) {
+function Reading(props) {
   const setReadingState = useStore((state) => state.setReadingState)
 
   return (
@@ -48,4 +48,4 @@ function page(props) {
   )
 }
 
-export default page
+export default Reading

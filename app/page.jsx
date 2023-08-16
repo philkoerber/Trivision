@@ -8,7 +8,7 @@ export default function Page() {
   const router = useRouter()
 
   return (
-    <motion.div key='welcome' className='flex justify-center items-center'>
+    <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
         {/* Content for the inner div */}
 
