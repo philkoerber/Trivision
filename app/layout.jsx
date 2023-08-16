@@ -9,6 +9,10 @@ export const metadata = {
 
 import Transition from './Transition'
 
+Globals.assign({
+  frameLoop: 'always',
+})
+
 export default function RootLayout({ children }) {
   return (
     <html lang='en' className='antialiased'>
