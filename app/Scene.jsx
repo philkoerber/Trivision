@@ -4,12 +4,6 @@ import Card from './3DObjects/Card'
 import SpaceScene from './3DObjects/SpaceScene'
 import Altar from './3DObjects/Altar'
 
-import { Globals } from '@react-spring/three'
-
-Globals.assign({
-  frameLoop: 'always',
-})
-
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { MeshPortalMaterial, useTexture, Text } from '@react-three/drei'

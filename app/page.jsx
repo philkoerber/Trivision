@@ -4,7 +4,12 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 
+import { Globals } from '@react-spring/three'
+
 export default function Page() {
+  Globals.assign({
+    frameLoop: 'always',
+  })
   const router = useRouter()
 
   return (

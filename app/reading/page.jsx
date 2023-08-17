@@ -1,11 +1,18 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import useStore from '../useStore'
 import { generateCardLink, tarotDeck } from '@/3DObjects/tarotDeckArray'
 
 function Reading(props) {
   const setReadingState = useStore((state) => state.setReadingState)
+
+  const reading = useStore((state) => state.reading)
+  const setReading = useStore((state) => state.setReading)
+
+  useEffect(() => {
+    console.log(reading.initialized)
+  }, [])
 
   return (
     <div className='flex absolute w-screen bottom-0 justify-center items-center gap-8'>
