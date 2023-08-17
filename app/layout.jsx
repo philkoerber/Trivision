@@ -23,7 +23,9 @@ export default function RootLayout({ children }) {
 
         <div className='absolute z-10 w-screen h-screen'>{children}</div>
 
-        <Layout>{/* <Scene /> */}</Layout>
+        <Layout>
+          <Scene />
+        </Layout>
       </body>
     </html>
   )

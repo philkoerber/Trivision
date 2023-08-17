@@ -3,6 +3,7 @@
 import Card from './3DObjects/Card'
 import SpaceScene from './3DObjects/SpaceScene'
 import Altar from './3DObjects/Altar'
+import { Globals } from '@react-spring/shared'
 
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
@@ -28,7 +29,9 @@ const AltarScene = () => {
     </mesh>
   )
 }
-
+Globals.assign({
+  frameLoop: 'always',
+})
 export default function Scene() {
   const readingState = useStore((state) => state.readingState)
 
