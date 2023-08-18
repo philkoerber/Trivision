@@ -4,10 +4,10 @@ import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 import Header from './Header'
 import Scene from './Scene'
-export const metadata = {
-  title: 'Trivision',
-  description: 'Your three card spread waits for you...',
-}
+// export const metadata = {
+//   title: 'Trivision',
+//   description: 'Your three card spread waits for you...',
+// }
 
 import Transition from './Transition'
 

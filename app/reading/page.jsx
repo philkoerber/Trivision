@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import useStore from '../useStore'
-import { generateCardLink, tarotDeck } from '@/3DObjects/tarotDeckArray'
+import { generateCardLink, drawCards, tarotDeck } from '@/3DObjects/tarotDeckArray'
 
 function Reading(props) {
   const setReadingState = useStore((state) => state.setReadingState)
@@ -12,7 +12,18 @@ function Reading(props) {
 
   useEffect(() => {
     console.log(reading.initialized)
+    if (reading.cards.length === 0) {
+      console.log('setting reading')
+      setReading({
+        initialized: true,
+        cards: drawCards(),
+      })
+    }
   }, [])
+
+  useEffect(() => {
+    console.log(reading)
+  }, [reading])
 
   return (
     <div className='flex absolute w-screen bottom-0 justify-center items-center gap-8'>

@@ -1,6 +1,6 @@
 import Card from './Card'
 
-const Altar = ({ altarNr, readingState }) => {
+const Altar = ({ altarNr, readingState, card }) => {
   let position = null
   let rotate = null
   if (altarNr === 1) {
@@ -19,7 +19,7 @@ const Altar = ({ altarNr, readingState }) => {
 
   return (
     <mesh position={position} rotation-y={rotate}>
-      <Card cardid={altarNr} active={altarNr <= readingState} />
+      <Card card={card} active={altarNr <= readingState} />
     </mesh>
   )
 }

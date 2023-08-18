@@ -2,24 +2,14 @@ import { useSpring, animated, config } from '@react-spring/three'
 import { useTexture } from '@react-three/drei'
 import { generateCardLink, tarotDeck } from './tarotDeckArray'
 
-const Card = ({ cardid, active }) => {
+const Card = ({ card, active }) => {
   const springs = useSpring({ rotation: active ? 0 : Math.PI })
   const { rotation } = useSpring({
     rotation: active ? 0 : Math.PI,
     config: config.molasses,
   })
 
-  let pic = ''
-  if (cardid === 1) {
-    pic = generateCardLink(tarotDeck[29])
-  }
-  if (cardid === 2) {
-    pic = generateCardLink(tarotDeck[60])
-  }
-  if (cardid === 3) {
-    pic = generateCardLink(tarotDeck[8])
-  }
-
+  const pic = generateCardLink(card)
   const frontTexture = useTexture(pic)
 
   return (

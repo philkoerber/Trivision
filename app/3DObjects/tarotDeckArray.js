@@ -85,3 +85,16 @@ export const tarotDeck = [
   'Two Of Wands',
   'Wheel Of Fortune',
 ]
+
+export function drawCards() {
+  const drawing = []
+
+  while (drawing.length < 3) {
+    const randomNumber = Math.floor(Math.random() * tarotDeck.length) // Generates a random number between 0 and 77
+    if (!drawing.includes(tarotDeck[randomNumber])) {
+      drawing.push(tarotDeck[randomNumber])
+    }
+  }
+
+  return drawing
+}

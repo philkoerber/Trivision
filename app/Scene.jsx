@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import useStore from './useStore'
+
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => <div className='flex w-screen h-screen flex-col items-center justify-center bg-black'></div>,
@@ -25,16 +26,22 @@ const AltarScene = () => {
 }
 
 export default function Scene() {
+  const { reading } = useStore()
+
+  useEffect(() => {}, [reading])
+
   const readingState = useStore((state) => state.readingState)
 
-  return (
-    <View orbit className='relative h-screen w-screen bg-black'>
-      <ambientLight />
-      <pointLight position={[0, 0, 20]} />
-      <SpaceScene />
-      <Altar altarNr={1} readingState={readingState} />
-      <Altar altarNr={2} readingState={readingState} />
-      <Altar altarNr={3} readingState={readingState} />
-    </View>
-  )
+  if (reading.initialized) {
+    return (
+      <View orbit className='relative h-screen w-screen bg-black'>
+        <ambientLight />
+        <pointLight position={[0, 0, 20]} />
+        <SpaceScene />
+        <Altar altarNr={1} readingState={readingState} card={reading?.cards[0]} />
+        <Altar altarNr={2} readingState={readingState} card={reading?.cards[1]} />
+        <Altar altarNr={3} readingState={readingState} card={reading?.cards[2]} />
+      </View>
+    )
+  } else return null
 }

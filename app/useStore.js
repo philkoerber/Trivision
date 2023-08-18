@@ -10,7 +10,7 @@ const useStore = create((set) => ({
     initialized: false,
     cards: [],
   },
-  setReading: (input) => set({ readingState: input }),
+  setReading: (input) => set({ reading: input }),
 }))
 
 export default useStore
