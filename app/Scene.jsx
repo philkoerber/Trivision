@@ -3,18 +3,12 @@
 import Card from './3DObjects/Card'
 import SpaceScene from './3DObjects/SpaceScene'
 import Altar from './3DObjects/Altar'
-import { Globals } from '@react-spring/shared'
 
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
-import { MeshPortalMaterial, useTexture, Text } from '@react-three/drei'
+import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import useStore from './useStore'
-import { useRef } from 'react'
-
-import { useSpring, animated, config } from '@react-spring/three'
-import { useFrame } from '@react-three/fiber'
-
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => <div className='flex w-screen h-screen flex-col items-center justify-center bg-black'></div>,
@@ -29,9 +23,7 @@ const AltarScene = () => {
     </mesh>
   )
 }
-Globals.assign({
-  frameLoop: 'always',
-})
+
 export default function Scene() {
   const readingState = useStore((state) => state.readingState)
 

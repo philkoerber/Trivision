@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function Header() {
   return (
-    <header className='w-full bg-transparent absolute top-0 z-10 backdrop-blur-sm'>
+    <header className='w-full bg-transparent absolute top-0 z-20 backdrop-blur-sm'>
       <nav className='container mx-auto flex items-center justify-between py-4'>
         <div>
           <Link href='/'>

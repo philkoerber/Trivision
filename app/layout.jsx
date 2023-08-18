@@ -1,3 +1,5 @@
+'use client'
+
 import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 import Header from './Header'
@@ -9,7 +11,13 @@ export const metadata = {
 
 import Transition from './Transition'
 
+import { Globals } from '@react-spring/shared'
+
 export default function RootLayout({ children }) {
+  // Globals.assign({
+  //   frameLoop: 'always',
+  // })
+
   return (
     <html lang='en' className='antialiased'>
       {/*
