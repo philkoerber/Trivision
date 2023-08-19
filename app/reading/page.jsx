@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react'
 import useStore from '../useStore'
 import { generateCardLink, drawCards, tarotDeck } from '@/3DObjects/tarotDeckArray'
+import { getCardMeaning } from './aiCalls'
 
 function Reading(props) {
   const setReadingState = useStore((state) => state.setReadingState)
@@ -13,7 +14,6 @@ function Reading(props) {
   useEffect(() => {
     console.log(reading.initialized)
     if (reading.cards.length === 0) {
-      console.log('setting reading')
       setReading({
         initialized: true,
         cards: drawCards(),
@@ -22,7 +22,15 @@ function Reading(props) {
   }, [])
 
   useEffect(() => {
-    console.log(reading)
+    if (reading.initialized) {
+      const fetchData = async () => {
+        const data = await getCardMeaning('The Hermit')
+        console.log(data)
+        return data
+      }
+
+      fetchData()
+    }
   }, [reading])
 
   return (
