@@ -19,3 +19,25 @@ export async function getCardMeaning(card, config) {
     console.log(e)
   }
 }
+
+export async function getThreeCardsMeaning(cards, config) {
+  const body = JSON.stringify({ question: cards })
+
+  try {
+    const response = await fetch(config.FLOWISE_URI_2, {
+      headers: {
+        Authorization: 'Bearer ' + config.FLOWISE_KEY,
+
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: body,
+    })
+    const responseText = await response.text()
+    const result = JSON.parse(responseText)
+    return result
+  } catch (e) {
+    console.log(e)
+  }
+}

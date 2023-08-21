@@ -6,10 +6,7 @@ const useStore = create((set) => ({
   setReadingState: (input) => set({ readingState: input }),
 
   //the reading, what cards are in the reading etc.
-  reading: {
-    initialized: false,
-    cards: [],
-  },
+  reading: null,
   setReading: (input) => set({ reading: input }),
 }))
 

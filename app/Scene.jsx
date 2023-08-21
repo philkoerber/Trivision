@@ -1,11 +1,10 @@
 'use client'
 
-import Card from './3DObjects/Card'
 import SpaceScene from './3DObjects/SpaceScene'
 import Altar from './3DObjects/Altar'
 
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import useStore from './useStore'
@@ -27,20 +26,21 @@ const AltarScene = () => {
 
 export default function Scene() {
   const { reading } = useStore()
+  const readingState = useStore((state) => state.readingState)
 
   useEffect(() => {}, [reading])
 
-  const readingState = useStore((state) => state.readingState)
+  const altars = reading?.cards.map((card, index) => (
+    <Altar key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
+  ))
 
-  if (reading.initialized) {
+  if (reading) {
     return (
       <View orbit className='relative h-screen w-screen bg-black'>
         <ambientLight />
         <pointLight position={[0, 0, 20]} />
         <SpaceScene />
-        <Altar altarNr={1} readingState={readingState} card={reading?.cards[0]} />
-        <Altar altarNr={2} readingState={readingState} card={reading?.cards[1]} />
-        <Altar altarNr={3} readingState={readingState} card={reading?.cards[2]} />
+        {altars}
       </View>
     )
   } else return null
