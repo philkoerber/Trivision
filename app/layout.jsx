@@ -14,9 +14,9 @@ import Transition from './Transition'
 import { Globals } from '@react-spring/shared'
 
 export default function RootLayout({ children }) {
-  // Globals.assign({
-  //   frameLoop: 'always',
-  // })
+  Globals.assign({
+    frameLoop: 'demand',
+  })
 
   return (
     <html lang='en' className='antialiased'>
