@@ -6,6 +6,13 @@ export const metadata = {
   description: 'Your three card spread waits for you...',
 }
 
+import { Vollkorn } from '@next/font/google'
+
+const vollkorn = Vollkorn({
+  subsets: ['latin'],
+  weight: ['400', '800'],
+})
+
 import ClientParent from './ClientParent'
 
 export default function RootLayout({ children }) {
@@ -16,7 +23,7 @@ export default function RootLayout({ children }) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className={vollkorn.className}>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <Header />
 
