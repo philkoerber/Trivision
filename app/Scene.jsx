@@ -4,7 +4,7 @@ import SpaceScene from './3DObjects/SpaceScene'
 import Altar from './3DObjects/Altar'
 
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import useStore from './useStore'
@@ -27,8 +27,21 @@ const AltarScene = () => {
 export default function Scene() {
   const { reading } = useStore()
   const readingState = useStore((state) => state.readingState)
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth)
+    }
 
-  useEffect(() => {}, [reading])
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const scale = Math.min(viewportWidth / 1100, 1) // Adjust the divisor as needed
+
+  useEffect(() => {
+    console.log(scale)
+  }, [readingState])
 
   const altars = reading?.cards.map((card, index) => (
     <Altar key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
@@ -36,12 +49,14 @@ export default function Scene() {
 
   if (reading) {
     return (
-      <View orbit className='relative h-screen w-screen bg-black'>
+      <View className='h-screen w-screen bg-black'>
         <spotLight position={[0, 0, 20]} />
         <ambientLight />
         <pointLight />
         <SpaceScene />
-        {altars}
+        <mesh position={[0, 0.9, 0]} scale={scale}>
+          {altars}
+        </mesh>
       </View>
     )
   } else return null

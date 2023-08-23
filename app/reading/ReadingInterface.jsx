@@ -22,7 +22,7 @@ function ReadingInterface({ cardsAndMeaning }) {
   }, [reading])
 
   return (
-    <div className='flex absolute z-30 w-screen bottom-0 justify-center items-center gap-8'>
+    <div className='flex absolute z-[200] w-screen bottom-0 justify-center items-center gap-8'>
       <button
         className='px-10 py-6 bg-neutral-800 bg-opacity-25 backdrop-blur-md text-white rounded-lg hover:bg-opacity-50 focus:outline-none transition duration-300'
         onClick={() => {
