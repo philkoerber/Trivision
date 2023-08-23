@@ -18,10 +18,10 @@ function Meaning() {
       <motion.div
         className='absolute w-screen h-screen flex items-center justify-center'
         key={readingState}
-        initial={{ opacity: 0, scale: 0.5, backdropFilter: 'blur(100px)' }}
-        animate={{ opacity: 1, scale: 1, backdropFilter: 'blur(0px)' }}
-        exit={{ opacity: 0, scale: 1.5, backdropFilter: 'blur(100px)' }}
-        transition={{ duration: 3 }}
+        initial={{ opacity: 0, scale: 0.5, filter: 'blur(20px)', x: 100 }}
+        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', x: 0 }}
+        exit={{ opacity: 0, scale: 0.5, filter: 'blur(20px)', x: -100 }}
+        transition={{ duration: 2, ease: 'easeInOut' }}
       >
         <div className='relative w-[300px] h-fit text-neutral-200 bg-neutral-800 bg-opacity-90 flex justify-center items-center p-8'>
           {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
