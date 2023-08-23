@@ -27,7 +27,7 @@ const AltarScene = () => {
 export default function Scene() {
   const { reading } = useStore()
   const readingState = useStore((state) => state.readingState)
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  const [viewportWidth, setViewportWidth] = useState(1100)
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth)
