@@ -1,23 +1,14 @@
-'use client'
-
-import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 import Header from './Header'
-import Scene from './Scene'
-// export const metadata = {
-//   title: 'Trivision',
-//   description: 'Your three card spread waits for you...',
-// }
 
-import Transition from './Transition'
+export const metadata = {
+  title: 'Trivision',
+  description: 'Your three card spread waits for you...',
+}
 
-import { Globals } from '@react-spring/shared'
+import ClientParent from './ClientParent'
 
 export default function RootLayout({ children }) {
-  Globals.assign({
-    frameLoop: 'demand',
-  })
-
   return (
     <html lang='en' className='antialiased'>
       {/*
@@ -30,10 +21,7 @@ export default function RootLayout({ children }) {
         <Header />
 
         <div className='absolute z-10 w-screen h-screen'>{children}</div>
-
-        <Layout>
-          <Scene />
-        </Layout>
+        <ClientParent />
       </body>
     </html>
   )
