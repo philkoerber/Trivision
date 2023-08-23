@@ -21,6 +21,7 @@ export async function getCardMeaning(card, config) {
 }
 
 export async function getThreeCardsMeaning(cards, config) {
+  console.log(cards, config)
   const body = JSON.stringify({ question: cards })
 
   try {
