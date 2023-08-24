@@ -2,20 +2,11 @@
 
 import React, { useEffect } from 'react'
 import useStore from '../useStore'
-import { generateCardLink, drawCards, tarotDeck } from '@/3DObjects/tarotDeckArray'
 
-function ReadingInterface({ cardsAndMeaning }) {
+function ReadingInterface() {
   const setReadingState = useStore((state) => state.setReadingState)
 
   const reading = useStore((state) => state.reading)
-  const setReading = useStore((state) => state.setReading)
-
-  useEffect(() => {
-    if (!reading) {
-      console.log('setting reading...')
-      setReading(cardsAndMeaning)
-    }
-  }, [])
 
   useEffect(() => {
     console.log(reading)

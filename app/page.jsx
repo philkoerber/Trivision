@@ -3,9 +3,26 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import useStore from './useStore'
 
 export default function Page() {
+  const reading = useStore((state) => state.reading)
+  const setReading = useStore((state) => state.setReading)
   const router = useRouter()
+
+  useEffect(() => {
+    if (!reading) {
+      async function fetchData() {
+        const response = await fetch('/api') // Adjust the endpoint URL
+        const data = await response.json()
+        console.log(data)
+        setReading(data)
+      }
+      fetchData()
+    }
+    console.log('you have a reading already!')
+  }, [])
 
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>

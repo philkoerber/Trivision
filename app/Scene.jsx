@@ -39,10 +39,6 @@ export default function Scene() {
 
   const scale = Math.min(viewportWidth / 1100, 1) // Adjust the divisor as needed
 
-  useEffect(() => {
-    console.log(scale)
-  }, [readingState])
-
   const altars = reading?.cards.map((card, index) => (
     <Altar key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
   ))
