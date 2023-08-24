@@ -3,7 +3,6 @@ export async function getCardMeaning(card, config) {
 
   try {
     const response = await fetch(config.FLOWISE_URI, {
-      cache: 'no-store',
       headers: {
         Authorization: 'Bearer ' + config.FLOWISE_KEY,
 
@@ -27,7 +26,7 @@ export async function getThreeCardsMeaning(cards, config) {
 
   try {
     const response = await fetch(config.FLOWISE_URI_2, {
-      cache: 'no-store',
+      cache: 'no-cache',
       headers: {
         Authorization: 'Bearer ' + config.FLOWISE_KEY,
 
