@@ -6,12 +6,6 @@ import useStore from '../useStore'
 function ReadingInterface() {
   const setReadingState = useStore((state) => state.setReadingState)
 
-  const reading = useStore((state) => state.reading)
-
-  useEffect(() => {
-    console.log(reading)
-  }, [reading])
-
   return (
     <div className='flex absolute z-[200] w-screen bottom-0 justify-center items-center gap-8'>
       <button

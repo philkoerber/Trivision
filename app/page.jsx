@@ -18,7 +18,7 @@ export default function Page() {
       async function fetchData() {
         try {
           console.log('calling for the reading...')
-          const response = await fetch('/api', { cache: 'no-cache' }) // Adjust the endpoint URL
+          const response = await fetch('/api', { cache: 'no-store' }) // Adjust the endpoint URL
           const data = await response.json()
           console.log(data)
           setReading(data)
