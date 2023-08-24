@@ -10,19 +10,29 @@ export default function Page() {
   const reading = useStore((state) => state.reading)
   const setReading = useStore((state) => state.setReading)
   const router = useRouter()
+  const [isLoading, setIsLoading] = React.useState(!reading) // Initialize isLoading based on whether reading is available
 
   useEffect(() => {
-    if (!reading) {
+    if (!reading && isLoading) {
+      setIsLoading(true) // Set isLoading to true when fetchData is triggered
       async function fetchData() {
-        const response = await fetch('/api') // Adjust the endpoint URL
-        const data = await response.json()
-        console.log(data)
-        setReading(data)
+        try {
+          console.log('calling for the reading...')
+          const response = await fetch('/api', { cache: 'no-cache' }) // Adjust the endpoint URL
+          const data = await response.json()
+          console.log(data)
+          setReading(data)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        } finally {
+          setIsLoading(false) // Set isLoading to false when fetching is done (success or failure)
+        }
       }
       fetchData()
+    } else {
+      console.log('you have a reading already!')
     }
-    console.log('you have a reading already!')
-  }, [])
+  }, [reading, isLoading]) // Add reading and isLoading to the dependency array
 
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
