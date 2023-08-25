@@ -21,7 +21,7 @@ export default function Page() {
           const data = await response.json()
           setReading(data)
         } catch (error) {
-          console.error('Error fetching data:', error)
+          console.error(error)
         } finally {
           setIsLoading(false) // Set isLoading to false when fetching is done (success or failure)
         }
