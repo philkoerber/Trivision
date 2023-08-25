@@ -14,24 +14,30 @@ export default function Page() {
 
   useEffect(() => {
     if (!reading && isLoading) {
-      setIsLoading(true) // Set isLoading to true when fetchData is triggered
+      setIsLoading(true)
+
       async function fetchData() {
         try {
           const response = await fetch('/api') // Adjust the endpoint URL
+
+          if (!response.ok) {
+            throw new Error(`Request failed with status: ${response.status}`)
+          }
+
           const data = await response.json()
           setReading(data)
         } catch (error) {
           console.error(error)
         } finally {
-          setIsLoading(false) // Set isLoading to false when fetching is done (success or failure)
+          setIsLoading(false)
         }
       }
+
       fetchData()
     } else {
-      console.log('you have a reading already!')
+      console.log('You already have a reading!')
     }
-  }, [reading, isLoading]) // Add reading and isLoading to the dependency array
-
+  }, [])
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>

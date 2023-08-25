@@ -3,8 +3,6 @@ import { NextResponse } from 'next/server'
 import { drawCards } from './tarotDeckArray'
 import { getCardMeaning, getThreeCardsMeaning } from './aiCalls'
 
-export const revalidate = 0
-
 export async function GET() {
   const config = {
     FLOWISE_KEY: process.env.FLOWISE_KEY,
