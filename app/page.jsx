@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import useStore from './useStore'
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   const reading = useStore((state) => state.reading)
   const setReading = useStore((state) => state.setReading)
@@ -18,7 +20,7 @@ export default function Page() {
       async function fetchData() {
         try {
           console.log('calling for the reading...')
-          const response = await fetch('/api', { cache: 'no-store' }) // Adjust the endpoint URL
+          const response = await fetch('/api', { cache: 'no-store', next: { revalidate: 0 } }) // Adjust the endpoint URL
           const data = await response.json()
           console.log(data)
           setReading(data)
