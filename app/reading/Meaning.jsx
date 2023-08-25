@@ -15,8 +15,8 @@ function Meaning() {
   useEffect(() => {}, [readingState])
 
   const handleButton = (direction) => {
+    setAnimating(true)
     let newState = readingState
-    console.log('calling button')
     if (direction === 'backward') {
       newState = Math.max(0, readingState - 1)
     } else if (direction === 'forward') {
@@ -31,15 +31,22 @@ function Meaning() {
       <motion.div
         className='absolute w-screen h-1/2 bottom-0 flex flex-col items-center justify-center'
         key={readingState}
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(10px)', x: 200, zIndex: 0 }}
+        initial={{ opacity: 0, scale: 1.1, filter: 'blur(5px)', x: 100, zIndex: 50 }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', x: 0, zIndex: 100 }}
-        exit={{ opacity: 0, scale: 0.5, filter: 'blur(10px)', x: -200, zIndex: 0 }}
+        exit={{ opacity: 0, scale: 0.5, filter: 'blur(20px)', x: -100, zIndex: 0 }}
         transition={{ duration: 3, ease: 'easeInOut' }}
+        onAnimationComplete={() => {
+          setAnimating(false)
+        }}
       >
         <div className='relative rounded-lg w-screen max-w-[600px] text-lg h-fit border-4 border-neutral-900 text-neutral-800 bg-neutral-300 bg-opacity-90 flex justify-center items-center p-6'>
-          <button onClick={() => handleButton('backward')}>before</button>
+          <button disabled={animating} onClick={() => handleButton('backward')}>
+            before
+          </button>
           {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
-          <button onClick={() => handleButton('forward')}>next</button>
+          <button disabled={animating} onClick={() => handleButton('forward')}>
+            next
+          </button>
         </div>
       </motion.div>
     </AnimatePresence>

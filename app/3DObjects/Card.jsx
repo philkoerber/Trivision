@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion-3d'
 import { useTexture } from '@react-three/drei'
-import { generateCardLink, tarotDeck } from './tarotDeckArray'
+import { generateCardLink } from './generateCardLink'
 
 const Card = ({ card, active }) => {
   const rotation = active ? 0 : Math.PI

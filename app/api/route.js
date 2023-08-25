@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server'
 
-import { drawCards } from '@/3DObjects/tarotDeckArray'
+import { drawCards } from './tarotDeckArray'
 import { getCardMeaning, getThreeCardsMeaning } from './aiCalls'
 
-export async function GET() {
-  console.log('generating card draw')
+export const revalidate = 0
+
+export async function GET(request) {
   const config = {
     FLOWISE_KEY: process.env.FLOWISE_KEY,
     FLOWISE_URI: process.env.FLOWISE_URI,
