@@ -46,9 +46,7 @@ export default function Scene() {
   if (reading) {
     return (
       <View className='h-screen w-screen bg-black'>
-        <spotLight position={[0, 0, 20]} />
         <ambientLight />
-        <pointLight />
         <SpaceScene />
         <mesh position={[0, 0.9, 0]} scale={scale}>
           {altars}
