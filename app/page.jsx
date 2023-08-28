@@ -10,15 +10,16 @@ export default function Page() {
   const reading = useStore((state) => state.reading)
   const setReading = useStore((state) => state.setReading)
   const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState(!reading) // Initialize isLoading based on whether reading is available
+  const [isLoading, setIsLoading] = React.useState(!reading)
 
   useEffect(() => {
+    const { signal } = new AbortController()
     if (!reading && isLoading) {
       setIsLoading(true)
 
       async function fetchData() {
         try {
-          const response = await fetch('/api') // Adjust the endpoint URL
+          const response = await fetch('/api', { signal })
 
           if (!response.ok) {
             throw new Error(`Request failed with status: ${response.status}`)
@@ -41,8 +42,6 @@ export default function Page() {
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
-        {/* Content for the inner div */}
-
         <div className='relative flex justify-center items-center'>
           <img src='/welcome.svg' className='w-[99%] relative invert' />
           <img src='/welcome.svg' className='absolute scale-x-[102%] scale-y-[105%]' />
