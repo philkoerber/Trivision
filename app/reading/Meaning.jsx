@@ -50,7 +50,7 @@ function Meaning() {
           ></div>
           <div className=''>
             <motion.div
-              className=' relative text-xl w-screen max-w-[600px] h-fit flex justify-center p-6 z-60 bg-clip-text text-transparent'
+              className=' relative text-xl w-screen max-w-[600px] h-fit flex justify-center p-6 md:p-10 z-60 bg-clip-text text-transparent'
               style={{
                 backgroundImage: `url(./noise.png)`,
                 filter: 'contrast(1) brightness(0.2)',
@@ -65,20 +65,20 @@ function Meaning() {
           </div>
         </div>
 
-        <div className='flex gap-10'>
+        <div className='flex gap-10 items-center justify-center'>
           <button
-            className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
+            className='pt-2 w-full z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
             disabled={animating}
             onClick={() => handleButton('backward')}
           >
-            <img className='h-8 w-8 rotate-180' src='./arrow.svg' />
+            <img className='h-8 w-full rotate-180' src='./arrow.svg' />
           </button>
           <button
-            className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-400 '
+            className='pt-2 w-full z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
             disabled={animating}
             onClick={() => handleButton('forward')}
           >
-            <img className='h-8 w-8' src='./arrow.svg' />
+            <img className='h-8 w-full' src='./arrow.svg' />
           </button>
         </div>
       </motion.div>
