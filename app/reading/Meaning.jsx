@@ -16,54 +16,71 @@ function Meaning() {
 
   const handleButton = (direction) => {
     setAnimating(true)
-    let newState = readingState
-    if (direction === 'backward') {
-      newState = Math.max(0, readingState - 1)
-    } else if (direction === 'forward') {
-      newState = Math.min(4, readingState + 1)
-    }
-
-    setReadingState(newState)
+    setTimeout(() => {
+      let newState = readingState
+      if (direction === 'backward') {
+        newState = Math.max(0, readingState - 1)
+      } else if (direction === 'forward') {
+        newState = Math.min(4, readingState + 1)
+      }
+      setReadingState(newState)
+    }, 10)
   }
 
   return (
     <AnimatePresence>
       <motion.div
-        className='absolute w-screen h-1/2 bottom-0 flex items-center justify-center mix-blend-multiply'
+        className='absolute w-screen h-1/2 bottom-0 flex flex-col items-center justify-center'
         key={readingState}
-        initial={{ opacity: 0, scale: 1.2, filter: 'blur(5px)', x: 100, zIndex: 50 }}
-        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', x: 0, zIndex: 100 }}
-        exit={{ opacity: 0, scale: 0.5, filter: 'blur(5px)', x: -100, zIndex: 0 }}
+        initial={{ opacity: 0, scale: 1.2, x: 100, zIndex: 200 }}
+        animate={{ opacity: 1, scale: 1, x: 0, zIndex: 100 }}
+        exit={{ opacity: 0, scale: 0, x: -100, filter: 'blur(100px)', zIndex: 0 }}
         transition={{ duration: 3, ease: 'easeInOut' }}
         onAnimationComplete={() => {
           setAnimating(false)
         }}
       >
-        <button
-          className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-200 '
-          disabled={animating}
-          onClick={() => handleButton('forward')}
-        >
-          <img className='h-8 w-8 rotate-180' src='./arrow.svg' />
-        </button>
+        <div className='bg-[#94977f] rounded border-4 border-black relative w-full max-w-[600px]'>
+          <div
+            className='rounded w-full h-full absolute bg-cover mix-blend-screen'
+            style={{
+              backgroundImage: 'url(./noise.png)',
+              filter: 'contrast(0.8)',
+            }}
+          ></div>
+          <div className=''>
+            <motion.div
+              className=' relative text-xl w-screen max-w-[600px] h-fit flex justify-center p-6 z-60 bg-clip-text text-transparent'
+              style={{
+                backgroundImage: `url(./noise.png)`,
+                filter: 'contrast(1) brightness(0.2)',
+              }}
+            >
+              {readingState > 0
+                ? readingState !== 4
+                  ? reading.cards[readingState - 1].meaning
+                  : reading.meaning
+                : null}
+            </motion.div>
+          </div>
+        </div>
 
-        {/* Apply blend effect only to this text container */}
-        <motion.div
-          className=' relative text-lg font-bold w-screen max-w-[600px] h-fit flex justify-center p-6 z-60 bg-clip-text text-transparent'
-          style={{
-            backgroundImage: `url(./noise.png)`,
-          }}
-        >
-          {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
-        </motion.div>
-
-        <button
-          className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-400 '
-          disabled={animating}
-          onClick={() => handleButton('forward')}
-        >
-          <img className='h-8 w-8' src='./arrow.svg' />
-        </button>
+        <div className='flex gap-10'>
+          <button
+            className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
+            disabled={animating}
+            onClick={() => handleButton('backward')}
+          >
+            <img className='h-8 w-8 rotate-180' src='./arrow.svg' />
+          </button>
+          <button
+            className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-400 '
+            disabled={animating}
+            onClick={() => handleButton('forward')}
+          >
+            <img className='h-8 w-8' src='./arrow.svg' />
+          </button>
+        </div>
       </motion.div>
     </AnimatePresence>
   )
