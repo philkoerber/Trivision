@@ -43,7 +43,10 @@ export default function Page() {
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
         {/* Content for the inner div */}
 
-        <img src='/welcome.svg' className='w-[70%]' />
+        <div className='relative flex justify-center items-center'>
+          <img src='/welcome.svg' className='w-[99%] relative invert' />
+          <img src='/welcome.svg' className='absolute scale-x-[102%] scale-y-[105%]' />
+        </div>
 
         <div>
           <p className='text-white text-center'>Your three-card spread awaits you.</p>

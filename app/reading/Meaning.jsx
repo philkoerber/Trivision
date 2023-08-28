@@ -40,7 +40,7 @@ function Meaning() {
         }}
       >
         <button
-          className='p-4 font-bold z-100 flex justify-center'
+          className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-200 '
           disabled={animating}
           onClick={() => handleButton('forward')}
         >
@@ -58,7 +58,7 @@ function Meaning() {
         </motion.div>
 
         <button
-          className='p-4 font-bold z-100 flex justify-center'
+          className='p-4 font-bold z-100 flex justify-center disabled:opacity-0 transition duration-400 '
           disabled={animating}
           onClick={() => handleButton('forward')}
         >
