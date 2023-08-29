@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server'
 import { drawCards } from './tarotDeckArray'
 import { getCardMeaning, getThreeCardsMeaning } from './aiCalls'
 
+export const runtime = 'edge'
+
 export async function GET(request) {
   console.log('call api...')
   const { searchParams } = new URL(request.url)
