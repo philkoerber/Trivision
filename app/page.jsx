@@ -14,36 +14,35 @@ export default function Page() {
 
   useEffect(() => {
     const { signal } = new AbortController()
-    if (!reading && isLoading) {
-      setIsLoading(true)
+    const randomToken = Math.random().toString(36).substring(7) // Generate a random token
 
-      async function fetchData() {
-        try {
-          const response = await fetch('/api', { signal })
+    setIsLoading(true)
 
-          if (!response.ok) {
-            throw new Error(`Request failed with status: ${response.status}`)
-          }
+    async function fetchData() {
+      try {
+        const response = await fetch(`/api?token=${randomToken}`, { signal })
 
-          const data = await response.json()
-          setReading(data)
-        } catch (error) {
-          console.error(error)
-        } finally {
-          setIsLoading(false)
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`)
         }
-      }
 
-      fetchData()
-    } else {
-      console.log('You already have a reading!')
+        const data = await response.json()
+        setReading(data)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setIsLoading(false)
+      }
     }
-  }, [])
+
+    fetchData()
+  }, []) // Empty dependency array to trigger only on mount
+
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
         <div className='relative flex justify-center items-center'>
-          <img src='/welcome.svg' className='w-[99%] relative invert' />
+          <img src='/welcome.svg' className='w-[99%] relative invert blur-md scale-110' />
           <img src='/welcome.svg' className='absolute scale-x-[102%] scale-y-[105%]' />
         </div>
 

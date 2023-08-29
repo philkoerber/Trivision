@@ -45,15 +45,15 @@ function Meaning() {
             className='rounded w-full h-full absolute bg-cover mix-blend-screen'
             style={{
               backgroundImage: 'url(./noise.png)',
-              filter: 'contrast(0.8)',
+              filter: 'contrast(0.5)',
             }}
           ></div>
           <div className=''>
             <motion.div
-              className=' relative text-xl w-screen max-w-[600px] h-fit flex justify-center p-6 md:p-10 z-60 bg-clip-text text-transparent'
+              className=' relative text-md md:text-lg lg:text-xl xl:text-2xl text-xl w-screen max-w-[600px] h-fit flex justify-center p-2 md:p-4 lg:p-6 z-60 bg-clip-text text-transparent'
               style={{
                 backgroundImage: `url(./noise.png)`,
-                filter: 'contrast(1) brightness(0.2)',
+                filter: 'contrast(1) brightness(0.4)',
               }}
             >
               {readingState > 0
