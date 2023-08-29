@@ -15,22 +15,40 @@ export async function GET(request) {
   }
 
   const threeCards = drawCards()
+  // const cardsAndMeaning = {
+  //   cards: [
+  //     {
+  //       card: threeCards[0],
+  //       meaning: await getCardMeaning(threeCards[0], config),
+  //     },
+  //     {
+  //       card: threeCards[1],
+  //       meaning: await getCardMeaning(threeCards[1], config),
+  //     },
+  //     {
+  //       card: threeCards[2],
+  //       meaning: await getCardMeaning(threeCards[2], config),
+  //     },
+  //   ],
+  //   meaning: await getThreeCardsMeaning(threeCards.join(), config),
+  // }
+
   const cardsAndMeaning = {
     cards: [
       {
         card: threeCards[0],
-        meaning: await getCardMeaning(threeCards[0], config),
+        meaning: '',
       },
       {
         card: threeCards[1],
-        meaning: await getCardMeaning(threeCards[1], config),
+        meaning: '',
       },
       {
         card: threeCards[2],
-        meaning: await getCardMeaning(threeCards[2], config),
+        meaning: '',
       },
     ],
-    meaning: await getThreeCardsMeaning(threeCards.join(), config),
+    meaning: '',
   }
 
   return NextResponse.json(cardsAndMeaning)
