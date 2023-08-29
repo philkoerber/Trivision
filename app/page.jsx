@@ -13,14 +13,13 @@ export default function Page() {
   const [isLoading, setIsLoading] = React.useState(!reading)
 
   useEffect(() => {
-    const { signal } = new AbortController()
     const randomToken = Math.random().toString(36).substring(7) // Generate a random token
 
     setIsLoading(true)
 
     async function fetchData() {
       try {
-        const response = await fetch(`/api?token=${randomToken}`, { signal })
+        const response = await fetch(`/api?token=${randomToken}`)
 
         if (!response.ok) {
           throw new Error(`Request failed with status: ${response.status}`)

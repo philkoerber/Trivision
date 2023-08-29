@@ -3,7 +3,9 @@ import { NextResponse } from 'next/server'
 import { drawCards } from './tarotDeckArray'
 import { getCardMeaning, getThreeCardsMeaning } from './aiCalls'
 
-export async function GET() {
+export async function GET(request) {
+  console.log('call api...')
+  const { searchParams } = new URL(request.url)
   const config = {
     FLOWISE_KEY: process.env.FLOWISE_KEY,
     FLOWISE_URI: process.env.FLOWISE_URI,
