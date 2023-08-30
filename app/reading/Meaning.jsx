@@ -12,7 +12,9 @@ function Meaning() {
 
   const [animating, setAnimating] = useState(false)
 
-  useEffect(() => {}, [readingState])
+  useEffect(() => {
+    console.log(reading)
+  }, [reading])
 
   const handleButton = (direction) => {
     setAnimating(true)

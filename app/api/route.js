@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 
 import { drawCards } from './tarotDeckArray'
-import { getCardMeaning, getThreeCardsMeaning } from './aiCalls'
 
 export const runtime = 'edge'
 
