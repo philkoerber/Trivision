@@ -17,7 +17,7 @@ function Meaning() {
   }, [reading])
 
   const handleButton = (direction) => {
-    setAnimating(true)
+    setAnimating(false)
     setTimeout(() => {
       let newState = readingState
       if (direction === 'backward') {
@@ -31,59 +31,36 @@ function Meaning() {
 
   return (
     <AnimatePresence>
-      <motion.div
-        className='absolute w-screen h-1/2 bottom-0 flex flex-col items-center justify-center'
-        key={readingState}
-        initial={{ opacity: 0, scale: 1.2, x: 100, zIndex: 200 }}
-        animate={{ opacity: 1, scale: 1, x: 0, zIndex: 100 }}
-        exit={{ opacity: 0, scale: 0, x: -100, filter: 'blur(100px)', zIndex: 0 }}
-        transition={{ duration: 3, ease: 'easeInOut' }}
-        onAnimationComplete={() => {
-          setAnimating(false)
-        }}
-      >
-        <div className='bg-[#94977f] rounded border-4 border-black relative w-full max-w-[600px]'>
-          <div
-            className='rounded w-full h-full absolute bg-cover mix-blend-screen'
+      <div className='absolute bottom-0 flex justify-center items-center flex-col w-full '>
+        <div className='bg-gray-200 w-full max-w-[600px] overflow-y-scroll overflow-x-hidden max-h-[40vh] md:max-h-[33.3vh] scrollbar-track-gray-300 scrollbar-thumb-gray-600'>
+          <motion.div
+            className=' relative text-md md:text-lg lg:text-xl xl:text-2xl text-xl w-screen max-w-[600px] h-fit flex justify-center p-2 md:p-4 lg:p-6 z-60 bg-clip-text text-transparent'
             style={{
-              backgroundImage: 'url(./noise.png)',
-              filter: 'contrast(0.5)',
+              backgroundImage: `url(./noise.png)`,
+              filter: 'contrast(0.9) brightness(0.9)',
             }}
-          ></div>
-          <div className=''>
-            <motion.div
-              className=' relative text-md md:text-lg lg:text-xl xl:text-2xl text-xl w-screen max-w-[600px] h-fit flex justify-center p-2 md:p-4 lg:p-6 z-60 bg-clip-text text-transparent'
-              style={{
-                backgroundImage: `url(./noise.png)`,
-                filter: 'contrast(1) brightness(0.4)',
-              }}
-            >
-              {readingState > 0
-                ? readingState !== 4
-                  ? reading.cards[readingState - 1].meaning
-                  : reading.meaning
-                : null}
-            </motion.div>
-          </div>
+          >
+            {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
+          </motion.div>
         </div>
 
-        <div className='flex gap-10 items-center justify-center'>
+        <div className='flex z-100'>
           <button
-            className='pt-2 w-full z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
+            className='pt-2 w-full z-100 flex scale-75 flex-1 transition duration-800 '
             disabled={animating}
             onClick={() => handleButton('backward')}
           >
             <img className='h-8 w-full rotate-180' src='./arrow.svg' />
           </button>
           <button
-            className='pt-2 w-full z-100 flex justify-center disabled:opacity-0 enabled:opacity-100 transition duration-800 '
+            className='pt-2 w-full z-100 flex flex-1 transition duration-800 '
             disabled={animating}
             onClick={() => handleButton('forward')}
           >
             <img className='h-8 w-full' src='./arrow.svg' />
           </button>
         </div>
-      </motion.div>
+      </div>
     </AnimatePresence>
   )
 }

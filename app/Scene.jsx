@@ -37,7 +37,7 @@ export default function Scene() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const scale = Math.min(viewportWidth / 1100, 1) // Adjust the divisor as needed
+  const scale = Math.min(viewportWidth / 900, 1) // Adjust the divisor as needed
 
   const altars = reading?.cards.map((card, index) => (
     <Altar key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
