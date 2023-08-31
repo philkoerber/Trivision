@@ -32,12 +32,12 @@ function Meaning() {
   return (
     <AnimatePresence>
       <div className='absolute bottom-0 flex justify-center items-center flex-col w-full '>
-        <div className='bg-gray-200 w-full max-w-[600px] overflow-y-scroll overflow-x-hidden max-h-[40vh] md:max-h-[33.3vh] scrollbar-track-gray-300 scrollbar-thumb-gray-600'>
+        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden max-h-[40vh] md:max-h-[33.3vh] backdrop-blur-md rounded  flex justify-center items-center'>
           <motion.div
             className=' relative text-md md:text-lg lg:text-xl xl:text-2xl text-xl w-screen max-w-[600px] h-fit flex justify-center p-2 md:p-4 lg:p-6 z-60 bg-clip-text text-transparent'
             style={{
               backgroundImage: `url(./noise.png)`,
-              filter: 'contrast(0.9) brightness(0.9)',
+              filter: 'contrast(0.7) brightness(2)',
             }}
           >
             {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
