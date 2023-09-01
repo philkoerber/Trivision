@@ -6,7 +6,6 @@ import useStore from '@/useStore'
 function Reading(props) {
   const reading = useStore((state) => state.reading)
   const setReading = useStore((state) => state.setReading)
-  const readingState = useStore((state) => state.readingState)
 
   useEffect(() => {
     async function fetchData(card, readingMeaning) {
@@ -27,8 +26,7 @@ function Reading(props) {
     async function fetchCardDataAndUpdateMeanings() {
       const updatedCards = await Promise.all(
         reading.cards.map(async ({ card }) => {
-          console.log(card)
-          const meaningData = await fetchData(card, false)
+          const meaningData = await fetchData(card, 'card')
           return {
             card,
             meaning: meaningData,
@@ -36,24 +34,18 @@ function Reading(props) {
         }),
       )
 
+      // Fetch data for threeCards and update the meaning
+      const threeCards = reading.cards.map((card) => card.card).join()
+      const readingMeaning = await fetchData(threeCards, 'reading')
+
       setReading({
         ...reading,
         cards: updatedCards,
+        meaning: readingMeaning,
       })
     }
 
     fetchCardDataAndUpdateMeanings()
-
-    // const threeCards = []
-    // reading.cards.map((card) => {
-    //   threeCards.push(card.card)
-    // })
-
-    // fetchData(threeCards.join(), true).then((readingMeaning) =>
-    //   setReading((prevReading) => {
-    //     setReading({ ...prevReading, meaning: readingMeaning })
-    //   }),
-    // )
   }, [])
 
   return <div></div>

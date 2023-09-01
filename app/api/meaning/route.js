@@ -57,10 +57,10 @@ export async function GET(request) {
   }
   let meaning = ''
   console.log(wantReadingMeaning)
-  if (wantReadingMeaning) {
+  if (wantReadingMeaning === 'card') {
     console.log('getting single card meaning')
     meaning = await getCardMeaning(card, config)
-  } else {
+  } else if (wantReadingMeaning === 'reading') {
     console.log('getting overall meaning')
     meaning = await getThreeCardsMeaning(card, config)
   }

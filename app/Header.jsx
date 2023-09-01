@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function Header() {
   return (
-    <header className='w-full bg-transparent absolute top-0 z-20 backdrop-blur-sm'>
+    <header className='w-full bg-transparent absolute top-0 z-20 backdrop-blur-sm p-2'>
       <nav className='container mx-auto flex items-center justify-between py-4'>
         <div>
           <Link href='/'>
@@ -16,8 +16,6 @@ function Header() {
           <li>
             <button onClick={() => alert('click!')}>About</button>
           </li>
-          <li></li>
-          <li></li>
         </ul>
       </nav>
     </header>
