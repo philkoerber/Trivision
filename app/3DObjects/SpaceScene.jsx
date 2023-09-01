@@ -12,7 +12,7 @@ const SpaceScene = () => {
 
   return (
     <mesh ref={controls}>
-      <sphereGeometry args={[500, 16, 16]} />
+      <sphereGeometry args={[8, 32, 32]} />
       <meshStandardMaterial map={map} side={THREE.BackSide} />
     </mesh>
   )
