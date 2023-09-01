@@ -34,6 +34,7 @@ export default function Scene() {
     }
 
     window.addEventListener('resize', handleResize)
+    handleResize()
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
