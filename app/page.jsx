@@ -40,7 +40,7 @@ export default function Page() {
   return (
     <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
-        <div className='relative flex justify-center items-center'>
+        <div className='relative flex justify-center items-center bg-cover'>
           <img src='/welcome.svg' className='w-[99%] relative invert blur-md scale-105' />
           <img src='/welcome.svg' className='absolute' />
         </div>

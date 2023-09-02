@@ -27,15 +27,15 @@ function Meaning() {
 
   return (
     <AnimatePresence>
-      <div className='absolute top-[60%] md:top-[65%] flex justify-center items-center flex-col w-full'>
-        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden h-[35vh] md:h-[25vh] scroll-smooth'>
+      <div className='absolute top-[60%] md:top-[65%] flex justify-center items-center flex-col-reverse gap-4 w-full'>
+        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden h-[25vh] md:h-[25vh] scroll-smooth'>
           <motion.div
             key={readingState}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 4 }}
-            className='relative text-md md:text-lg lg:text-xl w-screen max-w-[600px] flex justify-center z-60 bg-clip-text text-transparent px-8'
+            className='relative text-md md:text-lg lg:text-xl font-bold w-screen max-w-[600px] flex justify-center z-60 bg-clip-text text-transparent px-8'
             style={{
               backgroundImage: `url(./noise.png)`,
               filter: 'contrast(0.3) brightness(2) invert(0)',
