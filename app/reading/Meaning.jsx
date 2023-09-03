@@ -27,18 +27,18 @@ function Meaning() {
 
   return (
     <AnimatePresence>
-      <div className='absolute top-[60%] md:top-[65%] flex justify-center items-center flex-col-reverse gap-4 w-full'>
-        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden h-[25vh] md:h-[25vh] scroll-smooth'>
+      <div className='absolute top-[60%] md:top-[65%] flex justify-center items-center flex-col-reverse gap-8 w-full'>
+        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden h-fit  max-h-[25vh] md:max-h-[25vh] scroll-smooth backdrop-blur-lg rounded-xl'>
           <motion.div
             key={readingState}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 4 }}
-            className='relative text-md md:text-lg lg:text-xl font-bold w-screen max-w-[600px] flex justify-center z-60 bg-clip-text text-transparent px-8'
+            className='relative text-md md:text-lg lg:text-xl flex justify-center z-60 bg-clip-text text-transparent p-8'
             style={{
               backgroundImage: `url(./noise.png)`,
-              filter: 'contrast(0.3) brightness(2) invert(0)',
+              filter: 'contrast(0.6) brightness(0.5) invert(1)',
             }}
           >
             {readingState > 0 ? (readingState !== 4 ? reading.cards[readingState - 1].meaning : reading.meaning) : null}
