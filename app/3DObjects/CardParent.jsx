@@ -1,6 +1,6 @@
 import Card from './Card'
 
-const Altar = ({ altarNr, readingState, card }) => {
+const CardParent = ({ altarNr, readingState, card }) => {
   let position = null
   let rotate = null
   if (altarNr === 1) {
@@ -24,4 +24,4 @@ const Altar = ({ altarNr, readingState, card }) => {
   )
 }
 
-export default Altar
+export default CardParent

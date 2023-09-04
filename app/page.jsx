@@ -1,44 +1,23 @@
-'use client'
-
 import React from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import useStore from './useStore'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-export default function Page() {
-  const reading = useStore((state) => state.reading)
-  const setReading = useStore((state) => state.setReading)
+export default async function Page() {
+  const supabase = createServerComponentClient({ cookies })
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/sign-in')
+  }
   const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState(!reading)
-
-  useEffect(() => {
-    const randomToken = Math.random().toString(36).substring(7) // Generate a random token
-
-    setIsLoading(true)
-
-    async function fetchData() {
-      try {
-        const response = await fetch(`/api?token=${randomToken}`)
-
-        if (!response.ok) {
-          throw new Error(`Request failed with status: ${response.status}`)
-        }
-
-        const data = await response.json()
-        setReading(data)
-      } catch (error) {
-        console.error(error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchData()
-  }, []) // Empty dependency array to trigger only on mount
 
   return (
-    <motion.div key='welcome' className='flex justify-center items-center h-screen w-screen'>
+    <div key='welcome' className='flex justify-center items-center h-screen w-screen'>
       <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
         <div className='relative flex justify-center items-center bg-cover'>
           <img src='/welcome.svg' className='w-[99%] relative invert blur-md scale-105' />
@@ -57,6 +36,6 @@ export default function Page() {
           Start Reading...
         </button>
       </div>
-    </motion.div>
+    </div>
   )
 }

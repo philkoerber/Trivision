@@ -1,7 +1,7 @@
 'use client'
 
 import SpaceScene from './3DObjects/SpaceScene'
-import Altar from './3DObjects/Altar'
+import CardParent from './3DObjects/CardParent'
 
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
@@ -14,20 +14,12 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
   loading: () => <div className='flex w-screen h-screen flex-col items-center justify-center bg-black'></div>,
 })
 
-const AltarScene = () => {
-  const map = useTexture('/texture.jpg')
-  return (
-    <mesh>
-      <sphereGeometry args={[8, 8, 8]} />
-      <meshStandardMaterial map={map} side={THREE.BackSide} />
-    </mesh>
-  )
-}
-
 export default function Scene() {
   const { reading } = useStore()
   const readingState = useStore((state) => state.readingState)
+
   const [viewportWidth, setViewportWidth] = useState(1100)
+
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth)
@@ -40,19 +32,17 @@ export default function Scene() {
 
   const scale = Math.min(viewportWidth / 900, 1) // Adjust the divisor as needed
 
-  const altars = reading?.cards.map((card, index) => (
-    <Altar key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
-  ))
-
-  if (reading) {
-    return (
-      <View className='h-screen w-screen bg-black'>
-        <ambientLight />
-        <SpaceScene />
+  return (
+    <View className='h-screen w-screen bg-black'>
+      <ambientLight />
+      <SpaceScene />
+      {reading ? (
         <mesh position={[0, 0.9, 0]} scale={scale}>
-          {altars}
+          {reading?.cards.map((card, index) => (
+            <CardParent key={index} altarNr={index + 1} readingState={readingState} card={card.card} />
+          ))}
         </mesh>
-      </View>
-    )
-  } else return null
+      ) : null}
+    </View>
+  )
 }
