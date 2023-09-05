@@ -33,6 +33,7 @@ function Reading(props) {
 
   useEffect(() => {
     if (awaitingMeaning) {
+      setAwaitingMeaning(false)
       async function fetchData(card, readingMeaning) {
         try {
           const response = await fetch(`/api/meaning?card=${card}&readingMeaning=${readingMeaning}`)
@@ -70,9 +71,7 @@ function Reading(props) {
         })
       }
 
-      fetchCardDataAndUpdateMeanings().then(() => {
-        setAwaitingMeaning(false)
-      })
+      fetchCardDataAndUpdateMeanings()
     }
   }, [reading])
 

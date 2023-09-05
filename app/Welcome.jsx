@@ -1,9 +1,11 @@
 'use client'
 
 import React from 'react'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 function Welcome(props) {
+  const router = useRouter()
+
   return (
     <div className='h-fit w-fit p-11 bg-transparent flex flex-col items-center justify-center text-white rounded-md gap-8'>
       <div className='relative flex justify-center items-center bg-cover'>
@@ -18,7 +20,7 @@ function Welcome(props) {
 
       <button
         className='px-10 py-6 bg-neutral-800 bg-opacity-25 backdrop-blur-md text-white rounded-lg hover:bg-opacity-50 focus:outline-none transition duration-300'
-        onClick={() => redirect('/reading')}
+        onClick={() => router.push('/reading')}
       >
         Start Reading...
       </button>

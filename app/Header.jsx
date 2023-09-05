@@ -9,12 +9,12 @@ function Header() {
       <nav className='container mx-auto flex items-center justify-between py-4'>
         <div>
           <Link href='/'>
-            <p className='text-white text-xl font-bold'>Trivision</p>
+            <p className='text-white text-2xl font-bold'>TRIVISION</p>
           </Link>
         </div>
         <ul className='flex space-x-6 text-white'>
           <li>
-            <button onClick={() => alert('click!')}>About</button>
+            <button onClick={() => alert('click!')}>Profile</button>
           </li>
         </ul>
       </nav>

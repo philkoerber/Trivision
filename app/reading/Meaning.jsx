@@ -28,7 +28,7 @@ function Meaning() {
   return (
     <AnimatePresence>
       <div className='absolute top-[60%] md:top-[65%] flex justify-center items-center flex-col-reverse gap-8 w-full'>
-        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden h-fit  max-h-[25vh] md:max-h-[25vh] scroll-smooth backdrop-blur-lg rounded-xl'>
+        <div className='w-full max-w-[600px] overflow-y-scroll overflow-x-hidden border-2 border-stone-400 h-fit p-2 max-h-[25vh] md:max-h-[25vh] scroll-smooth backdrop-blur-lg rounded-xl'>
           <motion.div
             key={readingState}
             initial={{ opacity: 0 }}

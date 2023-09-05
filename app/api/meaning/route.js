@@ -56,12 +56,10 @@ export async function GET(request) {
     FLOWISE_URI_2: process.env.FLOWISE_URI_2,
   }
   let meaning = ''
-  console.log(wantReadingMeaning)
+  console.log('calling for a meaning...')
   if (wantReadingMeaning === 'card') {
-    console.log('getting single card meaning')
     meaning = await getCardMeaning(card, config)
   } else if (wantReadingMeaning === 'reading') {
-    console.log('getting overall meaning')
     meaning = await getThreeCardsMeaning(card, config)
   }
 
