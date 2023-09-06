@@ -14,7 +14,9 @@ function Header() {
         </div>
         <ul className='flex space-x-6 text-white'>
           <li>
-            <button onClick={() => alert('click!')}>Profile</button>
+            <Link href='/profile'>
+              <p className='text-white font-bold'>PROFILE</p>
+            </Link>
           </li>
         </ul>
       </nav>

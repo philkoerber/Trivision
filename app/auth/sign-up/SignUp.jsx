@@ -4,13 +4,16 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-function SignUp(props) {
+function SignUp() {
   const supabase = createClientComponentClient()
 
   async function signUp(formData) {
     const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
+      options: {
+        emailRedirectTo: 'http://localhost:3000/auth/sign-in/',
+      },
     })
 
     if (error) {

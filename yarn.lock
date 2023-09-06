@@ -6517,6 +6517,11 @@ react-native@*, react-native@>=0.64:
     ws "^6.2.2"
     yargs "^17.6.2"
 
+react-paypal-js@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.npmjs.org/react-paypal-js/-/react-paypal-js-0.0.1-security.tgz"
+  integrity sha512-mryql7EN5LyHtM0WmOE7bwlybGJBVpzXIg+fDPc8TwXs/jPkxm+MFoK35oNYPiBLZ8CHsdO0pNqyKet8McHXxg==
+
 react-reconciler@^0.27.0:
   version "0.27.0"
   resolved "https://registry.npmjs.org/react-reconciler/-/react-reconciler-0.27.0.tgz"
