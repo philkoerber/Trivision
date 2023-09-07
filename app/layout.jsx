@@ -18,6 +18,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import AuthProvider from '@/components/AuthProvider'
 import { cookies } from 'next/headers'
 
+export const dynamic = 'force-dynamic'
+
 export default async function RootLayout({ children }) {
   const supabase = createServerComponentClient({ cookies })
   const {

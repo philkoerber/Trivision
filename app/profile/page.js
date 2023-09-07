@@ -1,9 +1,9 @@
 import React from 'react'
 import PaymentForm from './PaymentForm'
 
-function page(props) {
-  const clientId = 'okcool'
-  const clientToken = 'yeahthatsnice'
+async function profile(props) {
+  const clientId = process.env.PAYPAL_CLIENT_ID
+  const clientToken = process.env.PAYPAL_SECRET_KEY
 
   return (
     <div className='w-[500px] bg-neutral-500 flex flex-col gap-4'>
@@ -17,4 +17,4 @@ function page(props) {
   )
 }
 
-export default page
+export default profile
