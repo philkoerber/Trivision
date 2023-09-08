@@ -6,11 +6,12 @@ async function profile(props) {
   const clientToken = process.env.PAYPAL_SECRET_KEY
 
   return (
-    <div className='w-[500px] bg-neutral-500 flex flex-col gap-4'>
+    <div className='w-[500px] text-white bg-transparent backdrop-blur-md flex flex-col gap-4 border-2 border-stone-400 p-4'>
       <div>Hello!</div>
       <div>Tokens: 0</div>
       <div>Readings: 100</div>
       <div>
+        <div>Get some readings....</div>
         <PaymentForm clientId={clientId} clientToken={clientToken} />
       </div>
     </div>

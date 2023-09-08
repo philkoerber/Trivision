@@ -1,25 +1,25 @@
 import Card from './Card'
 
-const CardParent = ({ altarNr, readingState, card }) => {
+const CardParent = ({ cardNr, active, card, onClick }) => {
   let position = null
   let rotate = null
-  if (altarNr === 1) {
+  if (cardNr === 1) {
     position = [-2, 0, 0.4]
     rotate = 0.2
   }
 
-  if (altarNr === 2) {
+  if (cardNr === 2) {
     position = [0, 0, 0]
     rotate = 0
   }
-  if (altarNr === 3) {
+  if (cardNr === 3) {
     position = [2, 0, 0.4]
     rotate = -0.2
   }
 
   return (
-    <mesh position={position} rotation-y={rotate}>
-      <Card card={card} active={altarNr <= readingState} />
+    <mesh position={position} rotation-y={rotate} onClick={() => onClick(cardNr)}>
+      <Card card={card} active={active} />
     </mesh>
   )
 }

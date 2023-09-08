@@ -41,7 +41,7 @@ function PaymentForm(props) {
     console.log('calling onApprove')
 
     return actions.order.capture().then(function (details) {
-      const { payer } = details
+      console.log(details)
       setSuccess(true)
     })
   }
