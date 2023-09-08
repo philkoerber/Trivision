@@ -75,7 +75,7 @@ function Reading(props) {
     }
   }, [reading])
 
-  return <div></div>
+  return <></>
 }
 
 export default Reading

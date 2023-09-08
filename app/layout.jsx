@@ -38,10 +38,12 @@ export default async function RootLayout({ children }) {
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <Header />
 
-        <div className='absolute w-screen h-screen'>
-          <AuthProvider accessToken={accessToken}>{children}</AuthProvider>
+        <div className='absolute w-screen h-screen overflow-x-clip overflow-scroll'>
+          <AuthProvider accessToken={accessToken}>
+            {children}
+            <ClientParent />
+          </AuthProvider>
         </div>
-        <ClientParent />
       </body>
     </html>
   )

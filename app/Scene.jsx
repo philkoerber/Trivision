@@ -48,7 +48,7 @@ export default function Scene() {
       <ambientLight />
       <SpaceScene />
       {reading ? (
-        <mesh position={[0, 0.9, 0]} scale={scale}>
+        <mesh position={[0, 1, 0]} scale={scale}>
           {reading?.cards.map((card, index) => (
             <CardParent
               key={index}

@@ -12,7 +12,7 @@ function Header() {
             <p className='text-white text-2xl font-bold'>TRIVISION</p>
           </Link>
         </div>
-        <ul className='flex space-x-6 text-white'>
+        <ul className='flex text-white'>
           <li>
             <Link href='/profile'>
               <p className='text-white font-bold'>PROFILE</p>
