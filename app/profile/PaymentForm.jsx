@@ -31,7 +31,16 @@ function PaymentForm(props) {
         ],
       })
       .then((orderID) => {
-        setOrderID(orderID)
+        fetch('/api/paypal/createOrder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            orderID: orderID,
+            userID: '12345', // Replace with the user's ID
+          }),
+        }).then((response) => console.log(response))
         return orderID
       })
   }
