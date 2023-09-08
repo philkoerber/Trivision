@@ -52,7 +52,7 @@ function PaymentForm(props) {
   }
 
   return (
-    <div className='w-1/2 m-auto'>
+    <div className='w-[200px] h-[300px] flex justify-center items-center'>
       <PayPalScriptProvider>
         <PayPalButtons style={{ layout: 'vertical' }} createOrder={createOrder} onApprove={onApprove} />
       </PayPalScriptProvider>

@@ -10,7 +10,7 @@ async function profile(props) {
       <div>Hello!</div>
       <div>Tokens: 0</div>
       <div>Readings: 100</div>
-      <div>
+      <div className='flex justify-center items-center flex-col'>
         <div>Get some readings....</div>
         <PaymentForm clientId={clientId} clientToken={clientToken} />
       </div>
