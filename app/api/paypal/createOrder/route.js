@@ -3,7 +3,17 @@ import { NextResponse } from 'next/server'
 import paypal from '@paypal/checkout-server-sdk'
 import client from '../client'
 
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+
 export async function POST() {
+  // SUPABASE
+  const supabase = createRouteHandlerClient({ cookies })
+
+  const { data, error } = await supabase.from('trivisionusers').select()
+  console.log(error)
+  console.log(data)
+  console.log(cookies)
   console.log('calling createorderAPI...')
 
   // Create the PayPal order

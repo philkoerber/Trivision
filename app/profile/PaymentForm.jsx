@@ -46,7 +46,7 @@ function PaymentForm(props) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: { orderID: data.orderID },
+        body: JSON.stringify({ orderID: data.orderID }), // Convert to JSON string
       })
 
       const capturedOrderData = await response.json()

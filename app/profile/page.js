@@ -1,8 +1,8 @@
 import React from 'react'
 import PaymentForm from './PaymentForm'
+import { redirect } from 'next/navigation'
 
 import { cookies } from 'next/headers'
-
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 async function profile(props) {
