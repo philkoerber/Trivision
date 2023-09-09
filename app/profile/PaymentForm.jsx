@@ -2,13 +2,7 @@
 
 import React, { useState } from 'react'
 
-import {
-  PayPalScriptProvider,
-  PayPalHostedFieldsProvider,
-  PayPalHostedField,
-  usePayPalHostedFields,
-  PayPalButtons,
-} from '@paypal/react-paypal-js'
+import { PayPalScriptProvider, PayPalButtons, FUNDING } from '@paypal/react-paypal-js'
 
 function PaymentForm(props) {
   const [show, setShow] = useState(false)
@@ -16,43 +10,57 @@ function PaymentForm(props) {
   const [ErrorMessage, setErrorMessage] = useState('')
   const [orderID, setOrderID] = useState(false)
 
-  const createOrder = (data, actions) => {
-    console.log('calling create order')
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            description: 'Sunflower',
-            amount: {
-              currency_code: 'USD',
-              value: 4,
-            },
-          },
-        ],
+  const createOrder = async () => {
+    try {
+      const response = await fetch('/api/paypal/createOrder/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .then((orderID) => {
-        fetch('/api/paypal/createOrder', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            orderID: orderID,
-            userID: '12345', // Replace with the user's ID
-          }),
-        }).then((response) => console.log(response))
-        return orderID
-      })
+
+      if (!response.ok) {
+        throw new Error('Error creating PayPal order')
+      }
+
+      const data = await response.json()
+
+      if (data.orderID) {
+        setOrderID(data.orderID)
+        return data.orderID
+      } else {
+        throw new Error('Order ID not received')
+      }
+    } catch (error) {
+      console.error('Error creating PayPal order:', error)
+      setErrorMessage('An error occurred')
+    }
   }
 
   // check Approval
-  const onApprove = (data, actions) => {
-    console.log('calling onApprove')
+  const onApprove = async (data, actions) => {
+    console.log('order id to catch: ' + data.orderID)
+    try {
+      const response = await fetch('/api/paypal/captureOrder/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: { orderID: data.orderID },
+      })
 
-    return actions.order.capture().then(function (details) {
-      console.log(details)
-      setSuccess(true)
-    })
+      const capturedOrderData = await response.json()
+
+      if (capturedOrderData) {
+        console.log('captured order!')
+        console.log(capturedOrderData)
+      } else {
+        throw new Error('Order ID not received')
+      }
+    } catch (error) {
+      console.error('Error capturing PayPal order:', error)
+      setErrorMessage('An error occurred')
+    }
   }
 
   //capture error
@@ -62,8 +70,18 @@ function PaymentForm(props) {
 
   return (
     <div className='w-[200px] h-[300px] flex justify-center items-center'>
-      <PayPalScriptProvider>
-        <PayPalButtons style={{ layout: 'vertical' }} createOrder={createOrder} onApprove={onApprove} />
+      <PayPalScriptProvider options={{ 'client-id': props.clientID, currency: 'USD' }}>
+        <PayPalButtons
+          style={{
+            color: 'gold',
+            shape: 'rect',
+            label: 'pay',
+            height: 50,
+          }}
+          fundingSource={FUNDING.PAYPAL}
+          createOrder={createOrder}
+          onApprove={onApprove}
+        />
       </PayPalScriptProvider>
     </div>
   )
