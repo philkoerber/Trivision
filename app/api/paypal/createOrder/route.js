@@ -10,7 +10,7 @@ export async function POST() {
   // SUPABASE
   const supabase = createRouteHandlerClient({ cookies })
 
-  const { data, error } = await supabase.from('trivisionusers').select()
+  const { data, error } = await supabase.from('trivisionusers').select().eq('userUID')
   console.log(error)
   console.log(data)
   console.log(cookies)

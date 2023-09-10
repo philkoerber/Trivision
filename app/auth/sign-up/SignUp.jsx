@@ -3,6 +3,7 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import Link from 'next/link'
 
 function SignUp() {
   const supabase = createClientComponentClient()
@@ -83,6 +84,10 @@ function SignUp() {
             </button>
           </Form>
         </Formik>
+
+        <Link className='text-white' href='/auth/sign-in'>
+          or sign in...
+        </Link>
       </div>
     </div>
   )
